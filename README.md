@@ -1,12 +1,15 @@
+# Credit
+This project started as: https://github.com/JJK-IO/DjangoDeployment and has been adapted by me over the years as our server needs have changed. Thank you to JJK whom this wouldn't have been possible without. 
+
 # DjangoDeployment
-I've only tested this on Debian 8 and Debian 9 server environment, but assuming your nginx is set up the same way with `/etc/nginx/sites-available` and `/etc/nginx/sites-enabled` you could modify this to work any any linux distro.
+I've only tested this on Debian 10, 11 server environment(s), but assuming your nginx is set up the same way with `/etc/nginx/sites-available` and `/etc/nginx/sites-enabled` you could modify this to work any any linux distro.
 
 The main thing you will need to just change `sudo apt update` to `sudo pacman -Syyu` etc. 
 Package names may be different in different distros too.
 
 ### Installation
 ```sh
-$ git clone https://git.jjk.io/jasonk/DjangoDeployment.git
+$ git clone https://github.com/foamyguy/DjangoDeployment
 ```
 
 ### Usage
@@ -20,16 +23,13 @@ Welcome to the server setup tool!
   --workers [num_workers] specify how many workers you want if using daphne
   --repository [url] URL to the git repository that holds the project.
   --branch [branch_name] URL to the git repository that holds the project.
-  --python [2/3]] Python version 2 or 3. Only type 2 or 3.
-  --runserver [y/N] Run server after setup?
-  --initdb [y/N] Initialize the database via manage.py migrate? Defaults to no
   --interactive [Y/n] run tool interactively or no.
        For interaction free tool running you must specify the --app --server --type [--workers if --type d] --repository --python flags
 ```
 
 ### Example
 ```sh
-init_server --app jjk --server jjk.io --type gunicorn --repository https://git.repo --python 2
+init_server --app jjk --server jjk.io --type gunicorn --repository https://git.repo
 ```
 
 ### Requirements
