@@ -46,7 +46,7 @@ function clone_repository() {
     BRANCH="master"
   fi
 
-sudo su - webapps << _GIT
+sudo -i -u webapps bash << _GIT
 git clone -b ${BRANCH} ${REPOSITORY_URL} ${APP_DIR} || exit 2
 _GIT
 }
@@ -68,7 +68,7 @@ function create_venv() {
 function install_requirements() {
   echo "Installing requirements..."
 
-sudo su - webapps <<_PIP
+sudo -i -u webapps bash <<_PIP
 source ${VENV_DIR}/bin/activate
 pip install -U pip
 pip install -U setuptools
@@ -89,7 +89,7 @@ function check_app_type() {
 
 function write_nginx() {
 echo "Creating nginx files..."
-sudo su <<_NGINX
+sudo -i -u root bash <<_NGINX
 cat > /etc/nginx/sites-available/${APP_NAME,,} <<_nginx
 upstream ${APP_NAME,,} {
   server unix:${APP_DIR}/run/${APP_TYPE,,}.sock fail_timeout=0;
@@ -156,7 +156,7 @@ function daphne_workers() {
     for (( c=1; c<=${WORKER_NUM}; c++ ))
     do
       echo "Creating worker: w${c}"
-sudo su <<_SVR
+sudo -i -u root bash <<_SVR
 cat > /etc/supervisor/conf.d/${APP_NAME,,}_w${c}.conf <<_worker
 [program:${APP_NAME,,}_w${c}]
 command=${APP_DIR}/bin/worker_start.sh
