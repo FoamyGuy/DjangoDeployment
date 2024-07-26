@@ -14,7 +14,7 @@ $ git clone https://github.com/foamyguy/DjangoDeployment
 
 ### Usage
 ```
-usage: $0 [--app app_name] [--server server_name] [--type type] [--repository git_url] [--python python_ver] [--help]
+usage: $0 [--app app_name] [--server server_name] [--type type] [--repository git_url] [--help]
 Welcome to the server setup tool!
   --help Display this help menu
   --app app_name Specify the app name, otherwise the tool will be interactive.
